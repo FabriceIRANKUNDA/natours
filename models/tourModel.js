@@ -167,10 +167,11 @@ tourSchema.pre(/^find/, function (next) {
   });
   next();
 });
-tourSchema.post(/^find/, function (docs, next) {
-  console.log(`This query took ${Date.now() - this.start} millseconds.`);
-  next();
-});
+
+// tourSchema.post(/^find/, function (docs, next) {
+//   console.log(`This query took ${Date.now() - this.start} millseconds.`);
+//   next();
+// });
 
 //AGGREGATION MIDDLEWARE
 tourSchema.pre('aggregate', function (next) {
