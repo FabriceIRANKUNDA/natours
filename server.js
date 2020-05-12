@@ -11,14 +11,20 @@ process.on('uncaughtException', (err) => {
 
 dotenv.config({ path: './config.env' });
 
+const db = process.env.DATABASE.replace(
+  '<password>',
+  process.env.DATABASE_PASSWORD
+);
+
 mongoose
-  .connect(process.env.DATABASE_LOCAL, {
+  .connect(db, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log('DB connection successful'));
-const port = process.env.PORT;
+
+const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Server running on ${port}...`);
 });
