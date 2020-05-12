@@ -1,3 +1,4 @@
+/*eslint-disable*/
 const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
@@ -86,7 +87,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
   user.waitingTime = undefined;
   user.loginAttempt = undefined;
-  user.save({ validateBeforeSave: false });
+  await user.save({ validateBeforeSave: false });
 
   // 3) If everything is OK, send token to the client
   createSendToken(user, 200, res);
