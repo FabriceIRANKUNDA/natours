@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import '@babel/polyfill';
 import { displayMap } from './mapBox';
-import { login, logout } from './login';
+import { signUp, login, logout } from './auth';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
 
@@ -9,6 +9,7 @@ import { bookTour } from './stripe';
 const mapBox = document.getElementById('map');
 
 const loginForm = document.querySelector('.form--login');
+const signupForm = document.querySelector('.form--signup');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
 const logoutBtn = document.querySelector('.nav__el--logout');
@@ -26,6 +27,17 @@ if (loginForm)
     const password = document.getElementById('password').value;
     login(email, password);
   });
+
+if (signupForm) {
+  signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmpassword').value;
+    signUp(name, email, password, confirmPassword);
+  });
+}
 
 if (userPasswordForm) {
   userPasswordForm.addEventListener('submit', async (e) => {

@@ -1,6 +1,5 @@
 const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
-const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
@@ -31,6 +30,11 @@ exports.getLoginForm = (req, res) => {
   });
 };
 
+exports.getSignUpForm = (req, res) => {
+  res.status(200).render('signup', {
+    title: 'Create Account',
+  });
+};
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
     title: 'Your account',
