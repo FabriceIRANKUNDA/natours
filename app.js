@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -24,6 +25,19 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 // GLOBAL MIDDLEWARE
 
+// Implements CORS
+app.use(cors()); //Access-control-origin * This allow all domain to access our API
+
+// To allow specific domain, api.natours.com, frontend natours.com
+// app.use(cors({
+//   orgin: 'https:www.natours.com'
+// }))
+
+// Enable cors for non simple requests
+app.options('*', cors());
+
+// for specific resource
+// app.options('/api/v1/tour/:id', cors())
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 // Set security HTTP headers
