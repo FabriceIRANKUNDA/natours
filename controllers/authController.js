@@ -44,7 +44,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
   // await new Email(newUser, url).sendWelcome();
   //createSendToken(newUser, 201, req, res);
   newUser.password = undefined;
-  res.status(200).json({
+  res.status(201).json({
     status: 'success',
     data: {
       user: newUser,
