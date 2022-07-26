@@ -12,8 +12,7 @@ const bookingSchema = new mongoose.Schema({
     required: [true, 'Booking must belong to a User'],
   },
   price: {
-    type: Number,
-    required: [true, 'Booking must have a price'],
+    type: Number
   },
   createdAt: {
     type: Date,
